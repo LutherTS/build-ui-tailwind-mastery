@@ -1,31 +1,31 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <main className="flex text-white h-screen">
-      <div className="bg-gray-800 p-3 space-y-2 overflow-y-scroll">
-        {Array.from({ length: 41 }, (_, i) => {
+    <div className="flex text-gray-100 h-screen font-whitney">
+      <div className="bg-gray-900 p-3 space-y-2 overflow-y-scroll">
+        {Array.from({ length: 40 }, (_, i) => {
           return (
             <div
-              key={i}
+              key={i + 1}
               className="bg-white text-gray-800 flex items-center justify-center size-12 rounded-full"
             >
-              {i}
+              {i + 1}
             </div>
           );
         })}
       </div>
-      <div className="flex flex-col bg-gray-700 w-60">
-        <div className="px-3 h-12 shadow-md flex items-center">
+      <div className="flex flex-col bg-gray-800 w-60">
+        <div className="px-3 h-12 shadow-md flex items-center font-ginto text-white">
           Tailwind CSS
         </div>
-        <div className="p-3 flex-1 space-y-2 overflow-y-scroll">
-          {Array.from({ length: 40 }, (_, i) => {
-            return <p key={i + 1}>channel {i + 1}</p>;
+        <div className="p-3 flex-1 space-y-2 overflow-y-scroll text-gray-300 font-medium">
+          <p className="text-white">channel 1 (unread)</p>
+          <p className="text-white">channel 2 (unread)</p>
+          {Array.from({ length: 38 }, (_, i) => {
+            return <p key={i + 3}>channel {i + 3}</p>;
           })}
         </div>
       </div>
-      <div className="flex flex-col bg-gray-600 flex-1">
+      <div className="flex flex-col bg-gray-700 flex-1">
         <div className="px-3 h-12 shadow-md flex items-center flex-shrink-0">
           general
         </div>
@@ -42,6 +42,6 @@ export default function Home() {
           })}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
