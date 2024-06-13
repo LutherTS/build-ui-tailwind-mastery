@@ -2,14 +2,14 @@ export default function Server({
   params,
 }: {
   params: {
-    id: string;
+    serverid: string;
   };
 }) {
-  const id = params.id;
+  const serverId = params.serverid;
 
   return (
     <>
-      <p>Server {id}</p>
+      <p>Server {serverId}</p>
     </>
   );
 }

@@ -1,71 +1,100 @@
-import Link from "next/link";
-
-function DiscordIcon(props: any) {
-  return (
-    <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>
-      <path
-        fill="currentColor"
-        d="M23.021 1.677A21.227 21.227 0 0017.658 0c-.252.462-.483.935-.687 1.418a19.931 19.931 0 00-5.943 0C10.82.935 10.59.462 10.337.005c-1.856.32-3.659.88-5.37 1.677C1.567 6.78.65 11.754 1.111 16.652A21.504 21.504 0 007.691 20c.532-.726 1.004-1.5 1.407-2.309a13.582 13.582 0 01-2.221-1.078c.188-.137.37-.274.547-.428a15.232 15.232 0 0013.152 0c.177.148.36.291.541.428-.707.424-1.453.787-2.22 1.078.408.808.875 1.578 1.405 2.303a21.5 21.5 0 006.58-3.347h.007c.541-5.674-.922-10.6-3.868-14.97zM9.681 13.638c-1.283 0-2.34-1.193-2.34-2.644S8.37 8.35 9.68 8.35c1.308 0 2.359 1.193 2.338 2.644 0 1.451-1.036 2.644-2.339 2.644zm8.635 0c-1.283 0-2.34-1.193-2.34-2.644s1.036-2.644 2.34-2.644c1.302 0 2.36 1.193 2.338 2.644 0 1.451-1.036 2.644-2.338 2.644z"
-      />
-    </svg>
-  );
-}
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex h-screen font-whitney text-gray-100">
-      <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
-        {/* {Array.from({ length: 40 }, (_, i) => {
-          return (
-            <div
-              key={i + 1}
-              className="flex size-12 items-center justify-center rounded-full bg-white text-gray-800"
-            >
-              {i + 1}
-            </div>
-          );
-        })} */}
-        <div
-          className={`hover:bg-brand size-icon rounded-icon hover:rounded-icon-hover flex items-center justify-center bg-gray-700 text-gray-100 transition-all duration-200 hover:text-white`}
+    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
+      <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
+        />
+        <ol className="list-inside list-decimal text-center font-mono text-sm sm:text-left">
+          <li className="mb-2">
+            Get started by editing{" "}
+            <code className="rounded bg-black/[.05] px-1 py-0.5 font-semibold dark:bg-white/[.06]">
+              app/page.tsx
+            </code>
+          </li>
+          <li>Save and see your changes instantly.</li>
+        </ol>
+
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
+          <a
+            className="flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm text-background transition-colors hover:bg-[#383838] sm:h-12 sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
+            />
+            Deploy now
+          </a>
+          <a
+            className="flex h-10 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:min-w-44 sm:px-5 sm:text-base dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read our docs
+          </a>
+        </div>
+      </main>
+      <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <DiscordIcon className="h-5 w-7" />
-        </div>
-        <Link
-          href="/servers/1"
-          className={`hover:bg-brand size-icon rounded-icon hover:rounded-icon-hover flex items-center justify-center bg-gray-700 text-gray-100 transition-all duration-200 hover:text-white`}
+          <Image
+            aria-hidden
+            src="/file-text.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          S1
-        </Link>
-      </div>
-      <div className="flex w-60 flex-col bg-gray-800">
-        <div className="flex h-12 items-center px-3 font-ginto text-white shadow-md">
-          Tailwind CSS
-        </div>
-        <div className="flex-1 space-y-2 overflow-y-scroll p-3 font-medium text-gray-300">
-          <p className="text-white">channel 1 (unread)</p>
-          <p className="text-white">channel 2 (unread)</p>
-          {Array.from({ length: 38 }, (_, i) => {
-            return <p key={i + 3}>channel {i + 3}</p>;
-          })}
-        </div>
-      </div>
-      <div className="flex flex-1 flex-col bg-gray-700">
-        <div className="flex h-12 flex-shrink-0 items-center px-3 shadow-md">
-          general
-        </div>
-        <div className="flex-1 space-y-4 overflow-y-scroll p-3">
-          {Array.from({ length: 40 }, (_, i) => {
-            return (
-              <p key={i + 1}>
-                Message {i + 1}. Lorem, ipsum dolor sit amet consectetur
-                adipisicing elit. Porro, itaque. Suscipit accusantium eos esse
-                totam doloribus sint vel quae, modi ab sit nihil tenetur. Quia
-                iste enim cum sint corporis.
-              </p>
-            );
-          })}
-        </div>
-      </div>
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
+      </footer>
     </div>
   );
 }
