@@ -12,7 +12,8 @@ export function ServerLink({
 }>) {
   const pathname = usePathname();
   const parentPath = pathname.split("/").slice(0, -1).join("/").concat("/");
-  const hasParentPath = href.startsWith(parentPath);
+  const hasParentPath =
+    pathname === "/channels" ? href === pathname : href.startsWith(parentPath);
 
   return (
     <div className="relative">

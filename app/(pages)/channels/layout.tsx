@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { ServerLink } from "./server-link";
 
-Image;
-
 function DiscordIcon(props: { className: string }) {
   return (
     <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>

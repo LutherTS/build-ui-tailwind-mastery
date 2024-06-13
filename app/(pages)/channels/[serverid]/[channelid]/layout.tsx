@@ -12,7 +12,7 @@ export default function ChannelLayout({
   return (
     <>
       <div className="flex flex-1 flex-col bg-gray-700">
-        <div className="flex h-12 flex-shrink-0 items-center px-3 shadow-md">
+        <div className="flex h-12 flex-shrink-0 items-center px-3 shadow-sm">
           channel #{channelId}
         </div>
         {children}
