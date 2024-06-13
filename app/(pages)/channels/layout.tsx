@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { ServerLink } from "./server-link";
 
-function DiscordIcon(props: any) {
+function DiscordIcon(props: { className: string }) {
   return (
     <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>
       <path
@@ -20,27 +21,20 @@ export default function ChannelsLayout({
     <>
       <div className="flex h-screen font-whitney text-gray-100">
         <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
-          {/* {Array.from({ length: 40 }, (_, i) => {
-          return (
-            <div
-              key={i + 1}
-              className="flex size-12 items-center justify-center rounded-full bg-white text-gray-800"
-            >
-              {i + 1}
-            </div>
-          );
-        })} */}
-          <div
-            className={`hover:bg-brand size-icon rounded-icon hover:rounded-icon-hover flex items-center justify-center bg-gray-700 text-gray-100 transition-all duration-200 hover:text-white`}
-          >
-            <DiscordIcon className="h-5 w-7" />
-          </div>
-          <Link
-            href="/channels/1"
-            className={`hover:bg-brand size-icon rounded-icon hover:rounded-icon-hover flex items-center justify-center bg-gray-700 text-gray-100 transition-all duration-200 hover:text-white`}
-          >
-            S1
-          </Link>
+          {Array.from({ length: 41 }, (_, i) => {
+            if (i === 0)
+              return (
+                <ServerLink key={i} href={`/channels`}>
+                  <DiscordIcon className="h-5 w-7" />
+                </ServerLink>
+              );
+            else
+              return (
+                <ServerLink key={i} href={`/channels/${i}`}>
+                  S{i}
+                </ServerLink>
+              );
+          })}
         </div>
         {children}
       </div>

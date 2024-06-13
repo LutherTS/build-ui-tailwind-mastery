@@ -1,4 +1,4 @@
-export default function Server({
+export default function ServerPage({
   params,
 }: {
   params: {
