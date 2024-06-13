@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const ICON = 3;
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -28,10 +30,18 @@ const config: Config = {
         brand: "#5865F2",
       },
       fontFamily: {
+        // from Next.js
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
+        // from me
         ginto: ["var(--font-ginto)"],
         whitney: ["var(--font-whitney)"],
+      },
+      size: {
+        icon: `${ICON}rem`,
+      },
+      borderRadius: {
+        icon: `${ICON / 2}rem`,
       },
     },
   },

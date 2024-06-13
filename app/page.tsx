@@ -23,7 +23,9 @@ export default function Home() {
             </div>
           );
         })} */}
-        <div className="hover:bg-brand flex size-12 items-center justify-center rounded-full bg-gray-700 text-gray-100 transition duration-200 hover:text-white">
+        <div
+          className={`hover:bg-brand size-icon rounded-icon flex items-center justify-center bg-gray-700 text-gray-100 transition-all duration-200 hover:rounded-2xl hover:text-white`}
+        >
           <DiscordIcon className="h-5 w-7" />
         </div>
       </div>
