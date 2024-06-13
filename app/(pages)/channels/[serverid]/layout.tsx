@@ -1,4 +1,12 @@
-import { CheckIcon, ChevronIcon, VerifiedIcon } from "@/app/components/icons";
+import {
+  BookIcon,
+  CheckIcon,
+  ChevronIcon,
+  HashtagIcon,
+  SpeakerphoneIcon,
+  VerifiedIcon,
+} from "@/app/components/icons";
+import { ChannelLink } from "./channel-link";
 
 const servers: { [key: string]: string } = {
   1: "Ratatoskr",
@@ -90,12 +98,30 @@ export default function ServerLayout({
           {servers[serverId]}'s Server
           <ChevronIcon className="ml-auto size-[18px] opacity-80" />
         </button>
-        <div className="flex-1 space-y-2 overflow-y-scroll p-3 font-medium text-gray-300">
-          <p className="text-white">channel 1 (unread)</p>
-          <p className="text-white">channel 2 (unread)</p>
-          {Array.from({ length: 38 }, (_, i) => {
-            return <p key={i + 3}>channel {i + 3}</p>;
-          })}
+        <div className="mt-[17px] flex-1 overflow-y-scroll font-medium text-gray-300">
+          <div className="space-y-0.5">
+            <ChannelLink href={`/channels/${serverId}/1`}>
+              <BookIcon className="mr-1.5 size-5 text-gray-400" />
+              welcome
+            </ChannelLink>
+            <ChannelLink href={`/channels/${serverId}/2`}>
+              <SpeakerphoneIcon className="mr-1.5 size-5 text-gray-400" />
+              announcements
+            </ChannelLink>
+            {/* <p className="text-white">channel 1 (unread)</p>
+          <p className="text-white">channel 2 (unread)</p> */}
+            {Array.from({ length: 38 }, (_, i) => {
+              return (
+                <ChannelLink
+                  key={i + 3}
+                  href={`/channels/${serverId}/${i + 3}`}
+                >
+                  <HashtagIcon className="mr-1.5 size-5 text-gray-400" />
+                  channel-{i + 3}
+                </ChannelLink>
+              );
+            })}
+          </div>
         </div>
       </div>
       {children}
