@@ -16,13 +16,17 @@ export function ServerLink({
     <div className="relative">
       <Link
         href={href}
-        className={`size-icon peer flex items-center justify-center transition-all duration-200 active:translate-y-1 ${
-          isPathname
-            ? "bg-brand rounded-icon-hover text-white"
-            : "hover:bg-brand rounded-icon hover:rounded-icon-hover bg-gray-700 text-gray-100 hover:text-white"
-        }`}
+        className={`group peer block transition-all duration-200 active:translate-y-0.5`}
       >
-        {children}
+        <div
+          className={`size-icon flex items-center justify-center transition-all duration-200 ${
+            isPathname
+              ? "bg-brand rounded-icon-hover text-white"
+              : "group-hover:bg-brand rounded-icon group-hover:rounded-icon-hover bg-gray-700 text-gray-100 group-hover:text-white"
+          }`}
+        >
+          {children}
+        </div>
       </Link>
       <div
         className={`absolute -left-3 top-0 flex h-full flex-col justify-center ${
