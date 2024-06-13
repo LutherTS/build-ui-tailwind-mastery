@@ -23,7 +23,7 @@ export default function ChannelsLayout({
     <>
       <div className="flex h-screen font-whitney text-gray-100">
         <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
-          {Array.from({ length: 41 }, (_, i) => {
+          {Array.from({ length: 40 }, (_, i) => {
             if (i === 0)
               return (
                 <div key={i}>
@@ -38,8 +38,8 @@ export default function ChannelsLayout({
                 <ServerLink key={i} href={`/channels/${i}`}>
                   {/* S{i} */}
                   <Image
-                    src="/adamwathan.jpeg"
-                    alt="Adam Wathan, creator of Tailwind"
+                    src={`/feh-characters/character_thumb_${i}.png`}
+                    alt={`i`}
                     fill
                   />
                 </ServerLink>
