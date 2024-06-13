@@ -25,6 +25,7 @@ const config: Config = {
           800: "#2F3136",
           900: "#202225",
         },
+        brand: "#5865F2",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
