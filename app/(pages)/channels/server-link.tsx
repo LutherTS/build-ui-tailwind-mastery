@@ -17,7 +17,7 @@ export function ServerLink({
     <div className="relative">
       <Link href={href} className="group peer block active:translate-y-px">
         <div
-          className={`size-icon flex items-center justify-center transition-all duration-200 ${
+          className={`size-icon relative flex items-center justify-center overflow-hidden transition-all duration-200 ${
             isPathname
               ? "bg-brand rounded-icon-hover text-white"
               : "group-hover:bg-brand rounded-icon group-hover:rounded-icon-hover bg-gray-700 text-gray-100 group-hover:text-white"

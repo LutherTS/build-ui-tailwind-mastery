@@ -1,4 +1,7 @@
+import Image from "next/image";
 import { ServerLink } from "./server-link";
+
+Image;
 
 function DiscordIcon(props: { className: string }) {
   return (
@@ -23,14 +26,22 @@ export default function ChannelsLayout({
           {Array.from({ length: 41 }, (_, i) => {
             if (i === 0)
               return (
-                <ServerLink key={i} href={`/channels`}>
-                  <DiscordIcon className="h-5 w-7" />
-                </ServerLink>
+                <div key={i}>
+                  <ServerLink href={`/channels`}>
+                    <DiscordIcon className="h-5 w-7" />
+                  </ServerLink>
+                  <hr className="mx-2 mt-2 rounded border-t-2 border-t-white/[.06]" />
+                </div>
               );
             else
               return (
                 <ServerLink key={i} href={`/channels/${i}`}>
-                  S{i}
+                  {/* S{i} */}
+                  <Image
+                    src="/adamwathan.jpeg"
+                    alt="Adam Wathan, creator of Tailwind"
+                    fill
+                  />
                 </ServerLink>
               );
           })}
