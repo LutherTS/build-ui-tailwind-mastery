@@ -12,12 +12,10 @@ export function ServerLink({
 }>) {
   const pathname = usePathname();
   const isPathname = pathname === href;
+
   return (
     <div className="relative">
-      <Link
-        href={href}
-        className={`group peer block transition-all duration-200 active:translate-y-0.5`}
-      >
+      <Link href={href} className="group peer block active:translate-y-px">
         <div
           className={`size-icon flex items-center justify-center transition-all duration-200 ${
             isPathname
