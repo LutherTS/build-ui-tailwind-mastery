@@ -11,14 +11,15 @@ export function ServerLink({
   href: string;
 }>) {
   const pathname = usePathname();
-  const isPathname = pathname === href;
+  const parentPath = pathname.split("/").slice(0, -1).join("/").concat("/");
+  const hasParentPath = href.startsWith(parentPath);
 
   return (
     <div className="relative">
       <Link href={href} className="group peer block active:translate-y-px">
         <div
           className={`size-icon relative flex items-center justify-center overflow-hidden transition-all duration-200 ${
-            isPathname
+            hasParentPath
               ? "bg-brand rounded-icon-hover text-white"
               : "group-hover:bg-brand rounded-icon group-hover:rounded-icon-hover bg-gray-700 text-gray-100 group-hover:text-white"
           }`}
@@ -28,7 +29,7 @@ export function ServerLink({
       </Link>
       <div
         className={`absolute -left-3 top-0 flex h-full flex-col justify-center ${
-          isPathname
+          hasParentPath
             ? "*:h-10"
             : "*:h-5 *:scale-0 *:bg-opacity-0 *:peer-hover:scale-100 *:peer-hover:bg-opacity-100"
         }`}

@@ -35,10 +35,11 @@ export default function ChannelsLayout({
               );
             else
               return (
-                <ServerLink key={i} href={`/channels/${i}`}>
+                <ServerLink key={i} href={`/channels/${i}/1`}>
                   <Image
                     src={`/feh-characters/character_thumb_${i}.png`}
                     alt={`i`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
                     fill
                   />
                 </ServerLink>
