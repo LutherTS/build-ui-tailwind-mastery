@@ -1,4 +1,5 @@
 import {
+  ArrowIcon,
   BookIcon,
   CheckIcon,
   ChevronIcon,
@@ -7,6 +8,7 @@ import {
   VerifiedIcon,
 } from "@/app/components/icons";
 import { ChannelLink } from "./channel-link";
+import { CategoryButton } from "./category-button";
 
 const servers: { [key: string]: string } = {
   1: "Ratatoskr",
@@ -98,7 +100,9 @@ export default function ServerLayout({
           {servers[serverId]}'s Server
           <ChevronIcon className="ml-auto size-[18px] opacity-80" />
         </button>
-        <div className="mt-[17px] flex-1 overflow-y-scroll font-medium text-gray-300">
+        <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
+          {/* no margin top because overflow-y-scroll */}
+          <div className="h-[17px]"></div>
           <div className="space-y-0.5">
             <ChannelLink href={`/channels/${serverId}/1`}>
               <BookIcon className="mr-1.5 size-5 text-gray-400" />
@@ -110,6 +114,11 @@ export default function ServerLayout({
             </ChannelLink>
             {/* <p className="text-white">channel 1 (unread)</p>
           <p className="text-white">channel 2 (unread)</p> */}
+          </div>
+          <div className="space-y-0.5">
+            <div className="mb-[5px] mt-[21px]">
+              <CategoryButton>Other channels</CategoryButton>
+            </div>
             {Array.from({ length: 38 }, (_, i) => {
               return (
                 <ChannelLink
@@ -122,6 +131,24 @@ export default function ServerLayout({
               );
             })}
           </div>
+          <div className="space-y-0.5">
+            <div className="mb-[5px] mt-[21px]">
+              {/* without category button, keeping the spacing */}
+            </div>
+            {Array.from({ length: 40 }, (_, i) => {
+              return (
+                <ChannelLink
+                  key={i + 41}
+                  href={`/channels/${serverId}/${i + 41}`}
+                >
+                  <HashtagIcon className="mr-1.5 size-5 text-gray-400" />
+                  channel-{i + 41}
+                </ChannelLink>
+              );
+            })}
+          </div>
+          {/* spacers used instead */}
+          <div className="h-[17px]"></div>
         </div>
       </div>
       {children}
