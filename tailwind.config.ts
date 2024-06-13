@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-const ICON = 3;
+const ICON = 3; // for handling rounded-full dynamically
 
 const config: Config = {
   content: [
@@ -42,6 +42,7 @@ const config: Config = {
       },
       borderRadius: {
         icon: `${ICON / 2}rem`,
+        "icon-hover": `${ICON / 3}rem`, // now that's flexing
       },
     },
   },
