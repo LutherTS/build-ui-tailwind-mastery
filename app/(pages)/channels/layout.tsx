@@ -36,7 +36,6 @@ export default function ChannelsLayout({
             else
               return (
                 <ServerLink key={i} href={`/channels/${i}`}>
-                  {/* S{i} */}
                   <Image
                     src={`/feh-characters/character_thumb_${i}.png`}
                     alt={`i`}
