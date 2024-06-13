@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function DiscordIcon(props: any) {
   return (
     <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>
@@ -28,6 +30,12 @@ export default function Home() {
         >
           <DiscordIcon className="h-5 w-7" />
         </div>
+        <Link
+          href="/servers/1"
+          className={`hover:bg-brand size-icon rounded-icon hover:rounded-icon-hover flex items-center justify-center bg-gray-700 text-gray-100 transition-all duration-200 hover:text-white`}
+        >
+          S1
+        </Link>
       </div>
       <div className="flex w-60 flex-col bg-gray-800">
         <div className="flex h-12 items-center px-3 font-ginto text-white shadow-md">
