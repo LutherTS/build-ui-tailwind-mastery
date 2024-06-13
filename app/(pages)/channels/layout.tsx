@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ServerLink } from "./server-link";
 
 function DiscordIcon(props: { className: string }) {
