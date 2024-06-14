@@ -31,8 +31,9 @@ export default function ChannelsLayout({
                   <hr className="mx-2 mt-2 rounded border-t-2 border-t-white/[.06]" />
                 </div>
               );
-            if (i !== 0 && i !== 9)
+            if (i !== 0 && ![1, 2, 3, 9].includes(i))
               // 9 being turned-good Veronica
+              // 1 to 3 being from the current chapter
               return (
                 <ServerLink key={i} href={`/channels/${i}/98`}>
                   <Image

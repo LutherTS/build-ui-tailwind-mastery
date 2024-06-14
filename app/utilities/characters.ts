@@ -1,7 +1,7 @@
 export const characters: { [key: string]: string } = {
-  1: "Ratatoskr",
-  2: "Hræsvelgr",
-  3: "Níðhöggr",
+  // 1: "Ratatoskr", // removing characters from the current book
+  // 2: "Hræsvelgr",
+  // 3: "Níðhöggr",
   4: "Seiðr",
   5: "Gullveig",
   6: "Heiðr",
@@ -41,9 +41,9 @@ export const characters: { [key: string]: string } = {
 };
 
 export const alliesIds = new Set([
-  "1",
-  "2",
-  "3",
+  // "1",
+  // "2",
+  // "3",
   "4",
   "6",
   "7",
