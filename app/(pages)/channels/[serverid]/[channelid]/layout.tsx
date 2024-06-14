@@ -51,14 +51,25 @@ export default function ChannelLayout({
           {/* For this, only #welcome and #announcements have descriptions. */}
           {specialIds.has(channelId) && (
             <>
-              <div className="mx-2 h-6 w-px bg-white/[.06]"></div>
-              <div className="mx-2 truncate text-sm font-medium text-gray-200">
+              <div className="mx-2 hidden h-6 w-px bg-white/[.06] md:block"></div>
+              <div className="mx-2 hidden truncate text-sm font-medium text-gray-200 md:block">
                 {specialChannels[channelId].description}
               </div>
             </>
           )}
 
-          <div className="ml-auto flex items-center">
+          {/* Mobile */}
+          <div className="ml-auto flex items-center md:hidden">
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.HashtagWithSpeechBubble className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.People className="mx-2 h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Desktop */}
+          <div className="ml-auto hidden items-center md:flex">
             <button className="text-gray-200 hover:text-gray-100">
               <Icons.HashtagWithSpeechBubble className="mx-2 h-6 w-6" />
             </button>
@@ -71,7 +82,6 @@ export default function ChannelLayout({
             <button className="text-gray-200 hover:text-gray-100">
               <Icons.People className="mx-2 h-6 w-6" />
             </button>
-            {/* // */}
             <div className="relative mx-2">
               <input
                 type="text"

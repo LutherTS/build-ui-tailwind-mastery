@@ -89,7 +89,7 @@ export default function ServerLayout({
 
   return (
     <>
-      <div className="flex w-60 flex-col bg-gray-800">
+      <div className="hidden w-60 flex-col bg-gray-800 md:flex">
         <button className="flex h-12 items-center px-4 font-ginto text-[15px] text-white shadow-sm transition hover:bg-gray-550/[.16]">
           {alliesIds.has(serverId) && (
             <div className="relative mr-1 size-4">

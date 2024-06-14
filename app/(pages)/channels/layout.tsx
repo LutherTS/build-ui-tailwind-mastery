@@ -11,7 +11,7 @@ export default function ChannelsLayout({
   return (
     <>
       <div className="flex h-screen font-whitney text-gray-100">
-        <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
+        <div className="hidden space-y-2 overflow-y-scroll bg-gray-900 p-3 md:block">
           {Array.from({ length: 40 }, (_, i) => {
             if (i === 0)
               return (
