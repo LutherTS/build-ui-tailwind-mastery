@@ -19,16 +19,12 @@ export default function ServerLayout({
     serverid: string;
   };
 }>) {
-  const times = randomInteger(30);
-  console.log(times);
+  const times = randomInteger(20);
 
-  const set = new Set();
+  const unreadIds = new Set();
   for (let i = 0; i < times; i++) {
-    set.add(randomInteger(1, 39).toString());
+    unreadIds.add(randomInteger(1, 39).toString());
   }
-
-  const unreadIds = [...set];
-  console.log(unreadIds);
 
   const serverId = params.serverid;
 
@@ -40,6 +36,7 @@ export default function ServerLayout({
           return {
             id: e2,
             label: characters[e2].toLocaleLowerCase().replaceAll(" ", "-"),
+            unread: unreadIds.has(e2),
           };
         });
     },
@@ -57,8 +54,18 @@ export default function ServerLayout({
           id: 0,
           label: "",
           channels: [
-            { id: "98", label: "welcome" },
-            { id: "99", label: "announcements" },
+            {
+              id: "98",
+              label: "welcome",
+              unread: false,
+              description: `Welcome to ${characters[serverId]}'s server.`,
+            },
+            {
+              id: "99",
+              label: "announcements",
+              unread: false,
+              description: `Announcements from the Book I first appeared in.`,
+            },
           ],
         },
         {
@@ -96,7 +103,6 @@ export default function ServerLayout({
         <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
           {/* no margin top because overflow-y-scroll */}
           <div className="h-3"></div>
-          {/* START */}
           {data[serverId].categories.map((category) => {
             return (
               <div key={category.id}>
@@ -104,6 +110,7 @@ export default function ServerLayout({
                   className={`${category.id !== 0 ? "mb-[5px] mt-[21px]" : ""}`}
                 >
                   {category.label && (
+                    // COLLAPSIBLE CATEGORIES TO BE HANDLED LATER WITHOUT USESTATE
                     <CategoryButton>{category.label}</CategoryButton>
                   )}
                 </div>
@@ -113,6 +120,7 @@ export default function ServerLayout({
                       <ChannelLink
                         key={channel.id}
                         href={`/channels/${serverId}/${channel.id}`}
+                        unread={channel.unread}
                       >
                         {channel.id === "98" && (
                           <Icons.Book className="mr-1.5 size-5 text-gray-400" />
@@ -131,7 +139,6 @@ export default function ServerLayout({
               </div>
             );
           })}
-          {/* END */}
           {/* spacers used instead */}
           <div className="h-3"></div>
         </div>
