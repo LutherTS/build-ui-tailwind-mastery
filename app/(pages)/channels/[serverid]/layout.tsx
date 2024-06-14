@@ -1,11 +1,4 @@
-import {
-  BookIcon,
-  CheckIcon,
-  ChevronIcon,
-  HashtagIcon,
-  SpeakerphoneIcon,
-  VerifiedIcon,
-} from "@/app/components/icons";
+import * as Icons from "@/app/components/icons";
 import { ChannelLink } from "./channel-link";
 import { CategoryButton } from "./category-button";
 import {
@@ -29,26 +22,26 @@ export default function ServerLayout({
   return (
     <>
       <div className="flex w-60 flex-col bg-gray-800">
-        <button className="hover:bg-gray-550/[.16] flex h-12 items-center px-4 font-ginto text-[15px] text-white shadow-sm transition">
+        <button className="flex h-12 items-center px-4 font-ginto text-[15px] text-white shadow-sm transition hover:bg-gray-550/[.16]">
           {alliesIds.has(serverId) && (
             <div className="relative mr-1 size-4">
-              <VerifiedIcon className="text-gray-550 absolute size-4" />
-              <CheckIcon className="absolute size-4" />
+              <Icons.Verified className="absolute size-4 text-gray-550" />
+              <Icons.Check className="absolute size-4" />
             </div>
           )}
           {characters[serverId]}'s Server
-          <ChevronIcon className="ml-auto size-[18px] opacity-80" />
+          <Icons.Chevron className="ml-auto size-[18px] opacity-80" />
         </button>
         <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
           {/* no margin top because overflow-y-scroll */}
-          <div className="h-[17px]"></div>
+          <div className="h-3"></div>
           <div className="space-y-0.5">
             <ChannelLink href={`/channels/${serverId}/98`}>
-              <BookIcon className="mr-1.5 size-5 text-gray-400" />
+              <Icons.Book className="mr-1.5 size-5 text-gray-400" />
               welcome
             </ChannelLink>
             <ChannelLink href={`/channels/${serverId}/99`}>
-              <SpeakerphoneIcon className="mr-1.5 size-5 text-gray-400" />
+              <Icons.Speakerphone className="mr-1.5 size-5 text-gray-400" />
               announcements
             </ChannelLink>
             {/* <p className="text-white">channel 1 (unread)</p>
@@ -64,7 +57,7 @@ export default function ServerLayout({
               if (e !== serverId)
                 return (
                   <ChannelLink key={e} href={`/channels/${serverId}/${e}`}>
-                    <HashtagIcon className="mr-1.5 size-5 text-gray-400" />
+                    <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
                     {characters[e].toLocaleLowerCase().replaceAll(" ", "-")}
                   </ChannelLink>
                 );
@@ -80,7 +73,7 @@ export default function ServerLayout({
               if (e !== serverId)
                 return (
                   <ChannelLink key={e} href={`/channels/${serverId}/${e}`}>
-                    <HashtagIcon className="mr-1.5 size-5 text-gray-400" />
+                    <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
                     {characters[e].toLocaleLowerCase().replaceAll(" ", "-")}
                   </ChannelLink>
                 );
@@ -94,14 +87,14 @@ export default function ServerLayout({
               if (e !== serverId)
                 return (
                   <ChannelLink key={e} href={`/channels/${serverId}/${e}`}>
-                    <HashtagIcon className="mr-1.5 size-5 text-gray-400" />
+                    <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
                     {characters[e].toLocaleLowerCase().replaceAll(" ", "-")}
                   </ChannelLink>
                 );
             })}
           </div>
           {/* spacers used instead */}
-          <div className="h-[17px]"></div>
+          <div className="h-3"></div>
         </div>
       </div>
       {children}

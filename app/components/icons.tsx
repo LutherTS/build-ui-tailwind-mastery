@@ -1,4 +1,4 @@
-export function DiscordIcon(props: any) {
+export function Discord(props: any) {
   return (
     <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>
       <path
@@ -9,7 +9,7 @@ export function DiscordIcon(props: any) {
   );
 }
 
-export function VerifiedIcon(props: any) {
+export function Verified(props: any) {
   return (
     <svg
       aria-label="Verified"
@@ -26,7 +26,7 @@ export function VerifiedIcon(props: any) {
   );
 }
 
-export function CheckIcon(props: any) {
+export function Check(props: any) {
   return (
     <svg aria-hidden="false" viewBox="0 0 16 15.2" {...props}>
       <path
@@ -37,7 +37,7 @@ export function CheckIcon(props: any) {
   );
 }
 
-export function ChevronIcon(props: any) {
+export function Chevron(props: any) {
   return (
     <svg viewBox="0 0 18 18" fill="none" {...props}>
       <path
@@ -48,7 +48,7 @@ export function ChevronIcon(props: any) {
   );
 }
 
-export function BookIcon(props: any) {
+export function Book(props: any) {
   return (
     <svg viewBox="0 0 40 40" {...props}>
       <path
@@ -61,7 +61,7 @@ export function BookIcon(props: any) {
   );
 }
 
-export function SpeakerphoneIcon(props: any) {
+export function Speakerphone(props: any) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
@@ -72,7 +72,7 @@ export function SpeakerphoneIcon(props: any) {
   );
 }
 
-export function ArrowIcon(props: any) {
+export function Arrow(props: any) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
@@ -85,7 +85,7 @@ export function ArrowIcon(props: any) {
   );
 }
 
-export function AddPersonIcon(props: any) {
+export function AddPerson(props: any) {
   return (
     <svg viewBox="0 0 16 16" {...props}>
       <path
@@ -96,7 +96,7 @@ export function AddPersonIcon(props: any) {
   );
 }
 
-export function HashtagIcon(props: any) {
+export function Hashtag(props: any) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
