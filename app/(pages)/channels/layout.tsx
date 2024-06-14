@@ -31,9 +31,10 @@ export default function ChannelsLayout({
                   <hr className="mx-2 mt-2 rounded border-t-2 border-t-white/[.06]" />
                 </div>
               );
-            else
+            if (i !== 0 && i !== 9)
+              // 9 being turned-good Veronica
               return (
-                <ServerLink key={i} href={`/channels/${i}/1`}>
+                <ServerLink key={i} href={`/channels/${i}/98`}>
                   <Image
                     src={`/feh-characters/character_thumb_${i}.png`}
                     alt={`i`}

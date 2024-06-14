@@ -1,9 +1,11 @@
+import { characters } from "@/app/utilities/characters";
+
 const channels: { [key: string]: string } = {
-  1: "welcome",
-  2: "announcements",
+  98: "welcome",
+  99: "announcements",
 };
 
-const specialIds = new Set(["1", "2"]);
+const specialIds = new Set(["98", "99"]);
 
 export default function ChannelLayout({
   params,
@@ -22,7 +24,7 @@ export default function ChannelLayout({
         <div className="flex h-12 flex-shrink-0 items-center px-3 shadow-sm">
           {specialIds.has(channelId)
             ? `${channels[channelId]}`
-            : `channel-${channelId}`}
+            : `${characters[channelId].toLocaleLowerCase().replaceAll(" ", "-")}`}
         </div>
         {children}
       </div>
