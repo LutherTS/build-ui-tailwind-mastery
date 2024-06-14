@@ -1,3 +1,5 @@
+import randomInteger from "random-int";
+
 import * as Icons from "@/app/components/icons";
 import { ChannelLink } from "./channel-link";
 import { CategoryButton } from "./category-button";
@@ -17,7 +19,66 @@ export default function ServerLayout({
     serverid: string;
   };
 }>) {
+  const times = randomInteger(30);
+  console.log(times);
+
+  const set = new Set();
+  for (let i = 0; i < times; i++) {
+    set.add(randomInteger(1, 39).toString());
+  }
+
+  const unreadIds = [...set];
+  console.log(unreadIds);
+
   const serverId = params.serverid;
+
+  const channels = [[...alliesIds], [...enemiesIds], [...neutralsIds]].map(
+    (e) => {
+      return e
+        .filter((e2) => e2 !== serverId)
+        .map((e2) => {
+          return {
+            id: e2,
+            label: characters[e2].toLocaleLowerCase().replaceAll(" ", "-"),
+          };
+        });
+    },
+  );
+
+  const alliesChannels = channels[0];
+  const enemiesChannels = channels[1];
+  const neutralsChannels = channels[2];
+
+  const data = {
+    [serverId]: {
+      label: characters[serverId],
+      categories: [
+        {
+          id: 0,
+          label: "",
+          channels: [
+            { id: "98", label: "welcome" },
+            { id: "99", label: "announcements" },
+          ],
+        },
+        {
+          id: 1,
+          label: alliesIds.has(serverId) ? "Other allies" : "Allies",
+          channels: alliesChannels,
+        },
+        {
+          id: 2,
+          label: enemiesIds.has(serverId) ? "Other enemies" : "Enemies",
+          channels: enemiesChannels,
+        },
+        {
+          id: 3,
+          label: "",
+          channels: neutralsChannels,
+        },
+      ],
+    },
+  };
 
   return (
     <>
@@ -35,64 +96,42 @@ export default function ServerLayout({
         <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
           {/* no margin top because overflow-y-scroll */}
           <div className="h-3"></div>
-          <div className="space-y-0.5">
-            <ChannelLink href={`/channels/${serverId}/98`}>
-              <Icons.Book className="mr-1.5 size-5 text-gray-400" />
-              welcome
-            </ChannelLink>
-            <ChannelLink href={`/channels/${serverId}/99`}>
-              <Icons.Speakerphone className="mr-1.5 size-5 text-gray-400" />
-              announcements
-            </ChannelLink>
-            {/* <p className="text-white">channel 1 (unread)</p>
-          <p className="text-white">channel 2 (unread)</p> */}
-          </div>
-          <div className="mb-[5px] mt-[21px]">
-            <CategoryButton>
-              {alliesIds.has(serverId) ? "Other allies" : "Allies"}
-            </CategoryButton>
-          </div>
-          <div className="space-y-0.5">
-            {[...alliesIds].map((e) => {
-              if (e !== serverId)
-                return (
-                  <ChannelLink key={e} href={`/channels/${serverId}/${e}`}>
-                    <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
-                    {characters[e].toLocaleLowerCase().replaceAll(" ", "-")}
-                  </ChannelLink>
-                );
-            })}
-          </div>
-          <div className="mb-[5px] mt-[21px]">
-            <CategoryButton>
-              {enemiesIds.has(serverId) ? "Other enemies" : "Enemies"}
-            </CategoryButton>
-          </div>
-          <div className="space-y-0.5">
-            {[...enemiesIds].map((e) => {
-              if (e !== serverId)
-                return (
-                  <ChannelLink key={e} href={`/channels/${serverId}/${e}`}>
-                    <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
-                    {characters[e].toLocaleLowerCase().replaceAll(" ", "-")}
-                  </ChannelLink>
-                );
-            })}
-          </div>
-          <div className="space-y-0.5">
-            <div className="mb-[5px] mt-[21px]">
-              {/* without category button, keeping the spacing */}
-            </div>
-            {[...neutralsIds].map((e) => {
-              if (e !== serverId)
-                return (
-                  <ChannelLink key={e} href={`/channels/${serverId}/${e}`}>
-                    <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
-                    {characters[e].toLocaleLowerCase().replaceAll(" ", "-")}
-                  </ChannelLink>
-                );
-            })}
-          </div>
+          {/* START */}
+          {data[serverId].categories.map((category) => {
+            return (
+              <div key={category.id}>
+                <div
+                  className={`${category.id !== 0 ? "mb-[5px] mt-[21px]" : ""}`}
+                >
+                  {category.label && (
+                    <CategoryButton>{category.label}</CategoryButton>
+                  )}
+                </div>
+                <div className="space-y-0.5">
+                  {category.channels.map((channel) => {
+                    return (
+                      <ChannelLink
+                        key={channel.id}
+                        href={`/channels/${serverId}/${channel.id}`}
+                      >
+                        {channel.id === "98" && (
+                          <Icons.Book className="mr-1.5 size-5 text-gray-400" />
+                        )}
+                        {channel.id === "99" && (
+                          <Icons.Speakerphone className="mr-1.5 size-5 text-gray-400" />
+                        )}
+                        {!["98", "99"].includes(channel.id) && (
+                          <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
+                        )}
+                        {channel.label}
+                      </ChannelLink>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+          {/* END */}
           {/* spacers used instead */}
           <div className="h-3"></div>
         </div>

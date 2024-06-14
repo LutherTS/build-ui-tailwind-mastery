@@ -6,9 +6,9 @@ export default function ChannelsPage() {
           Dashboard
         </div>
         <div className="flex-1 space-y-2 overflow-y-scroll p-3 font-medium text-gray-300">
-          <p className="">Friends</p>
-          <p className="">Nitro</p>
-          <p className="">Shop</p>
+          <p className="text-white">Friends</p>
+          <p className="text-white">Nitro</p>
+          <p className="text-white">Shop</p>
           {/* {Array.from({ length: 37 }, (_, i) => {
             return <p key={i + 4}>channel {i + 4}</p>;
           })} */}

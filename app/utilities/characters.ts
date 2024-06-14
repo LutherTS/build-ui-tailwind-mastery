@@ -1,4 +1,4 @@
-export const characters: { [key: string]: string } = {
+export const characters: { [x: string]: string } = {
   // 1: "Ratatoskr", // removing characters from the current book
   // 2: "Hræsvelgr",
   // 3: "Níðhöggr",

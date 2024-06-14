@@ -20,7 +20,7 @@ export function ChannelLink({
       href={href}
       className={`group mx-2 flex items-center rounded px-2 py-1 ${
         isPathname
-          ? "bg-gray-550/[.16] text-gray-100"
+          ? "bg-gray-550/[.32] text-white"
           : "text-gray-300 hover:bg-gray-550/[.16] hover:text-gray-100"
       }`}
     >
