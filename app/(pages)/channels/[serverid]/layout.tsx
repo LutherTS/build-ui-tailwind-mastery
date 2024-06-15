@@ -1,14 +1,13 @@
 import randomInteger from "random-int";
 
 import * as Icons from "@/app/components/icons";
-import { ChannelLink } from "./channel-link";
-import { CategoryButton } from "./category-button";
 import {
   alliesIds,
   characters,
   enemiesIds,
   neutralsIds,
 } from "@/app/utilities/characters";
+import { Channels } from "./channels";
 
 export default function ServerLayout({
   params,
@@ -103,42 +102,7 @@ export default function ServerLayout({
         <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
           {/* no margin top because overflow-y-scroll */}
           <div className="h-3"></div>
-          {data[serverId].categories.map((category) => {
-            return (
-              <div key={category.id}>
-                <div
-                  className={`${category.id !== 0 ? "mb-[5px] mt-[21px]" : ""}`}
-                >
-                  {category.label && (
-                    // COLLAPSIBLE CATEGORIES TO BE HANDLED LATER WITHOUT USESTATE
-                    <CategoryButton>{category.label}</CategoryButton>
-                  )}
-                </div>
-                <div className="space-y-0.5">
-                  {category.channels.map((channel) => {
-                    return (
-                      <ChannelLink
-                        key={channel.id}
-                        href={`/channels/${serverId}/${channel.id}`}
-                        unread={channel.unread}
-                      >
-                        {channel.id === "98" && (
-                          <Icons.Book className="mr-1.5 size-5 text-gray-400" />
-                        )}
-                        {channel.id === "99" && (
-                          <Icons.Speakerphone className="mr-1.5 size-5 text-gray-400" />
-                        )}
-                        {!["98", "99"].includes(channel.id) && (
-                          <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
-                        )}
-                        {channel.label}
-                      </ChannelLink>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
+          <Channels data={data} serverId={serverId} />
           {/* spacers used instead */}
           <div className="h-3"></div>
         </div>
