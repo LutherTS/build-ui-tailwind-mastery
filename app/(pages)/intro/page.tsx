@@ -9,6 +9,7 @@ export default function Intro() {
             <Image
               src="/adamwathan.jpeg"
               alt="Adam Wathan, creator of Tailwind"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
               fill
             />
           </div>

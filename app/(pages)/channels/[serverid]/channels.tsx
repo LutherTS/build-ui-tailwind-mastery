@@ -50,11 +50,16 @@ export function Channels({
   return (
     <>
       {data[serverId].categories.map((category) => {
+        const categoryIsClosed = closedCategories.includes(category.id);
+
         return (
           <div key={category.id}>
             <div className={`${category.id !== 0 ? "mb-[5px] mt-[21px]" : ""}`}>
               {category.label && (
-                <CategoryButton handleClick={() => toggleCategory(category.id)}>
+                <CategoryButton
+                  handleClick={() => toggleCategory(category.id)}
+                  categoryIsClosed={categoryIsClosed}
+                >
                   {category.label}
                 </CategoryButton>
               )}
@@ -66,7 +71,7 @@ export function Channels({
                     key={channel.id}
                     href={`/channels/${serverId}/${channel.id}`}
                     unread={channel.unread}
-                    categoryIsClosed={closedCategories.includes(category.id)}
+                    categoryIsClosed={categoryIsClosed}
                   >
                     {channel.id === "98" && (
                       <Icons.Book className="mr-1.5 size-5 text-gray-400" />

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import { Message } from "@/app/utilities/messages";
 import { characters } from "@/app/utilities/characters";
+import { Message } from "@/app/utilities/messages";
 
 export function MessageWithUser({
   message,
@@ -11,7 +11,12 @@ export function MessageWithUser({
   return (
     <div className="mt-[17px] flex py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[0.07]">
       <div className="relative mr-4 size-10 flex-shrink-0 overflow-hidden rounded-full">
-        <Image src={message.avatarUrl} alt={characters[message.user]} fill />
+        <Image
+          src={message.avatarUrl}
+          alt={characters[message.user]}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
+          fill
+        />
       </div>
       <div className="w-11/12">
         <p className="flex items-baseline">

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
+import * as Icons from "@/app/components/icons";
 import { ServerLink } from "./server-link";
-import { Discord } from "@/app/components/icons";
 
 export default function ChannelsLayout({
   children,
@@ -17,7 +17,7 @@ export default function ChannelsLayout({
               return (
                 <div key={i}>
                   <ServerLink href={`/channels`}>
-                    <Discord className="h-5 w-7" />
+                    <Icons.Discord className="h-5 w-7" />
                   </ServerLink>
                   <hr className="mx-2 mt-2 rounded border-t-2 border-t-white/[.06]" />
                 </div>
@@ -29,7 +29,7 @@ export default function ChannelsLayout({
                 <ServerLink key={i} href={`/channels/${i}/98`}>
                   <Image
                     src={`/feh-characters/character_thumb_${i}.png`}
-                    alt={`i`}
+                    alt={`${i}`}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
                     fill
                   />

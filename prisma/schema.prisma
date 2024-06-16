@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Server {
+  identifier  Int     @id @default(autoincrement())
+
+  id          String // dependent on characters.ts
+
+  categories Category[]
+}
+
+model Category {
+  identifier   Int     @id @default(autoincrement())
+
+  id           Int
+  label        String
+
+  server       Server    @relation(fields: [serverId], references: [identifier])
+  serverId     Int
+
+  categories   Channel[]
+}
+
+model Channel {
+  identifier   Int     @id @default(autoincrement())
+
+  id           String // dependent on characters.ts
+  label        String
+  unread       Boolean
+  description  String
+
+  category     Category    @relation(fields: [categoryId], references: [identifier])
+  categoryId   Int
+  
+  messages     Message[]
+}
+
+model Message {
+  identifier   Int     @id @default(autoincrement())
+
+  id           Int
+  user         String // !
+  avatarUrl    String
+  date         String // !
+  text         String
+
+  channel      Channel    @relation(fields: [channelId], references: [identifier])
+  channelId    Int
+}
+
+// Reminders
+// - the goal here is to dynamize server unreads based on channel unreads
+// - channel unreads are normally based on posts unreads...
+// - ...then server unreads based on thus defined channel unreads
+// - here only channel unreads will be defined
+// - the goal also here to keep the current code as untouched as possible...
+// - ...since this is orginally an exercise un frontend, not backend

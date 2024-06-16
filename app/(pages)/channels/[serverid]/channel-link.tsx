@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { AddPerson } from "@/app/components/icons";
+import * as Icons from "@/app/components/icons";
 
 export function ChannelLink({
   children,
@@ -43,7 +43,7 @@ export function ChannelLink({
         } `}
       >
         {children}
-        <AddPerson className="ml-auto size-4 text-gray-200 opacity-0 hover:text-gray-100 group-hover:opacity-100" />
+        <Icons.AddPerson className="ml-auto size-4 text-gray-200 opacity-0 hover:text-gray-100 group-hover:opacity-100" />
       </Link>
       <div
         className={`absolute top-0 flex h-full flex-col justify-center ${

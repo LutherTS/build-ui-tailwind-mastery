@@ -1,5 +1,5 @@
-import { characters } from "@/app/utilities/characters";
 import * as Icons from "@/app/components/icons";
+import { characters } from "@/app/utilities/characters";
 
 const specialChannels: {
   [key: string]: {

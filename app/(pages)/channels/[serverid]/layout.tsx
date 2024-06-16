@@ -8,8 +8,9 @@ import {
   neutralsIds,
 } from "@/app/utilities/characters";
 import { Channels } from "./channels";
+import prisma from "@/prisma/db";
 
-export default function ServerLayout({
+export default async function ServerLayout({
   params,
   children,
 }: Readonly<{
@@ -26,6 +27,26 @@ export default function ServerLayout({
   }
 
   const serverId = params.serverid;
+
+  //
+
+  const server = await prisma.server.findFirst({
+    where: {
+      id: serverId,
+    },
+  });
+  console.log(server);
+
+  const serverCategories = await prisma.category.findMany({
+    where: {
+      server: {
+        id: serverId,
+      },
+    },
+  });
+  console.log(serverCategories);
+
+  //
 
   const channels = [[...alliesIds], [...enemiesIds], [...neutralsIds]].map(
     (e) => {
