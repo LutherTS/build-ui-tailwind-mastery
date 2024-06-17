@@ -4,6 +4,7 @@ import * as Icons from "@/app/components/icons";
 import { CategoryButton } from "./category-button";
 import { ChannelLink } from "./channel-link";
 import { useState } from "react";
+import { ChannelButton } from "./channel-button";
 
 export function Channels({
   data,
@@ -67,11 +68,13 @@ export function Channels({
             <div className="space-y-0.5">
               {category.channels.map((channel) => {
                 return (
-                  <ChannelLink
+                  <ChannelButton
                     key={channel.id}
                     href={`/channels/${serverId}/${channel.id}`}
                     unread={channel.unread}
+                    channelId={channel.id}
                     categoryIsClosed={categoryIsClosed}
+                    serverId={serverId}
                   >
                     {channel.id === "98" && (
                       <Icons.Book className="mr-1.5 size-5 text-gray-400" />
@@ -83,7 +86,7 @@ export function Channels({
                       <Icons.Hashtag className="mr-1.5 size-5 text-gray-400" />
                     )}
                     {channel.label}
-                  </ChannelLink>
+                  </ChannelButton>
                 );
               })}
             </div>
