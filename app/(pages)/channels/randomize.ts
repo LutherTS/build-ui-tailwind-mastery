@@ -79,10 +79,11 @@ export async function randomize() {
     });
   }
 
-  revalidatePath("/channels", "layout"); // maybe in a server action it will work
-  // redirect("/channels");
+  revalidatePath("/channels", "layout");
+  redirect("/channels");
 }
 
 /* Notes
 Making it explicitly a button with no redirects.
+Bringing back redirect so that the change in unread doesn't seem "random."
 */
