@@ -2,12 +2,16 @@ import Image from "next/image";
 
 import * as Icons from "@/app/components/icons";
 import { ServerLink } from "./server-link";
+import prisma from "@/prisma/db";
 
-export default function ChannelsLayout({
+export default async function ChannelsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const servers = await prisma.server.findMany({});
+  console.log(servers);
+
   return (
     <>
       <div className="flex h-screen font-whitney text-gray-100">

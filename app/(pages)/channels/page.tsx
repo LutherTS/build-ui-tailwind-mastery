@@ -1,4 +1,8 @@
-export default function ChannelsPage() {
+import { revalidatePath } from "next/cache";
+
+export default async function ChannelsPage() {
+  revalidatePath("/channels");
+
   return (
     <>
       <div className="flex w-60 flex-col bg-gray-800">

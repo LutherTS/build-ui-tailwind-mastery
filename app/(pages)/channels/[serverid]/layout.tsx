@@ -30,21 +30,21 @@ export default async function ServerLayout({
 
   //
 
-  const server = await prisma.server.findFirst({
-    where: {
-      id: serverId,
-    },
-  });
-  console.log(server);
+  // const server = await prisma.server.findFirst({
+  //   where: {
+  //     id: serverId,
+  //   },
+  // });
+  // console.log(server);
 
-  const serverCategories = await prisma.category.findMany({
-    where: {
-      server: {
-        id: serverId,
-      },
-    },
-  });
-  console.log(serverCategories);
+  // const serverCategories = await prisma.category.findMany({
+  //   where: {
+  //     server: {
+  //       id: serverId,
+  //     },
+  //   },
+  // });
+  // console.log(serverCategories);
 
   //
 
