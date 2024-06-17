@@ -191,7 +191,3 @@ async function seed() {
 }
 
 seed();
-
-// You know... If you can't keep on nesting these creates, you might as well just do them one by one.
-
-// If I really want uniques, I'll have to create one by one and save into variables.

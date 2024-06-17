@@ -95,5 +95,5 @@ export default async function ChannelsLayout({
 /* Notes
 I think the solution I'm going to use finding a way for the /channels route to do a hard refresh. At least for now. Going back from template.tsx to layout.tsx. Or just to experiment I can keep it a template.tsx.
 I see now what a template does, it reloads itself at each click as seen in terms of positioning.
-That means perhaps... My solution is for tha main layout to actually be a template. (In the end it was a server action with revalidate layout.)
+That means perhaps... My solution is for the main layout to actually be a template. (In the end it was a server action with revalidate layout.)
 */
