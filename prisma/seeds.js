@@ -3,13 +3,9 @@ import {
   characters,
   enemiesIds,
   neutralsIds,
-} from "/Users/Luther/Code/discord-clone-buildui/app/utilities/characters.ts";
+} from "../app/utilities/characters.ts";
 import prisma from "./db.ts";
-import {
-  announces,
-  messages,
-  welcomes,
-} from "/Users/Luther/Code/discord-clone-buildui/app/utilities/messages.ts";
+import { announces, messages, welcomes } from "../app/utilities/messages.ts";
 
 const charactersArray = Object.entries(characters);
 

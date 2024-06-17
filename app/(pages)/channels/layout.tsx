@@ -1,9 +1,10 @@
 import Image from "next/image";
 
-import * as Icons from "@/app/components/icons";
-import { ServerLink } from "./server-link";
 import prisma from "@/prisma/db";
+
+import * as Icons from "@/app/components/icons";
 import { ServerButton } from "./server-button";
+import { ServerLink } from "./server-link";
 
 export default async function ChannelsLayout({
   children,
@@ -28,12 +29,10 @@ export default async function ChannelsLayout({
     },
     take: 35,
   });
-  console.log(unreadServers);
 
   const unreadServerIdentifiers = unreadServers.map((e, i, a) => {
     return e.identifier;
   });
-  console.log(unreadServerIdentifiers);
 
   return (
     <>
@@ -46,8 +45,6 @@ export default async function ChannelsLayout({
             <hr className="mx-2 mt-2 rounded border-t-2 border-t-white/[.06]" />
           </div>
           {servers.map((server) => {
-            // just to see how it works
-            // if (unreadServerIdentifiers.includes(server.identifier))
             return (
               <ServerLink
                 unread={unreadServerIdentifiers.includes(server.identifier)}
@@ -60,15 +57,8 @@ export default async function ChannelsLayout({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
                   fill
                 />
-                {/* {server.id} */}
               </ServerLink>
             );
-            // else
-            //   return (
-            //     <ServerLink key={server.id} href={`/channels/${server.id}/98`}>
-            //       {server.id}
-            //     </ServerLink>
-            //   );
           })}
           {/* // data now instructed from a database // */}
           {/* {Array.from({ length: 40 }, (_, i) => {
@@ -105,5 +95,5 @@ export default async function ChannelsLayout({
 /* Notes
 I think the solution I'm going to use finding a way for the /channels route to do a hard refresh. At least for now. Going back from template.tsx to layout.tsx. Or just to experiment I can keep it a template.tsx.
 I see now what a template does, it reloads itself at each click as seen in terms of positioning.
-That means perhaps... My solution is for tha main layout to actually be a template.
+That means perhaps... My solution is for tha main layout to actually be a template. (In the end it was a server action with revalidate layout.)
 */

@@ -1,15 +1,16 @@
 import randomInteger from "random-int";
+import { notFound } from "next/navigation";
+
+import prisma from "@/prisma/db";
 
 import * as Icons from "@/app/components/icons";
 import {
   alliesIds,
   characters,
-  enemiesIds,
-  neutralsIds,
+  // enemiesIds,
+  // neutralsIds,
 } from "@/app/utilities/characters";
 import { Channels } from "./channels";
-import prisma from "@/prisma/db";
-import { notFound } from "next/navigation";
 
 export default async function ServerLayout({
   params,
@@ -57,64 +58,66 @@ export default async function ServerLayout({
 
   //
 
-  const channels = [[...alliesIds], [...enemiesIds], [...neutralsIds]].map(
-    (e) => {
-      return e
-        .filter((e2) => e2 !== serverId)
-        .map((e2) => {
-          return {
-            id: e2,
-            label: characters[e2].toLocaleLowerCase().replaceAll(" ", "-"),
-            unread: unreadIds.has(e2),
-          };
-        });
-    },
-  );
+  /* // data now instructed from a database //
 
-  const alliesChannels = channels[0];
-  const enemiesChannels = channels[1];
-  const neutralsChannels = channels[2];
+  // const channels = [[...alliesIds], [...enemiesIds], [...neutralsIds]].map(
+  //   (e) => {
+  //     return e
+  //       .filter((e2) => e2 !== serverId)
+  //       .map((e2) => {
+  //         return {
+  //           id: e2,
+  //           label: characters[e2].toLocaleLowerCase().replaceAll(" ", "-"),
+  //           unread: unreadIds.has(e2),
+  //         };
+  //       });
+  //   },
+  // );
 
-  const data = {
-    [serverId]: {
-      label: characters[serverId],
-      categories: [
-        {
-          id: 0,
-          label: "",
-          channels: [
-            {
-              id: "98",
-              label: "welcome",
-              unread: false,
-              description: `Welcome to ${characters[serverId]}'s server.`,
-            },
-            {
-              id: "99",
-              label: "announcements",
-              unread: false,
-              description: `Announcements from the Book I first appeared in.`,
-            },
-          ],
-        },
-        {
-          id: 1,
-          label: alliesIds.has(serverId) ? "Other allies" : "Allies",
-          channels: alliesChannels,
-        },
-        {
-          id: 2,
-          label: enemiesIds.has(serverId) ? "Other enemies" : "Enemies",
-          channels: enemiesChannels,
-        },
-        {
-          id: 3,
-          label: "",
-          channels: neutralsChannels,
-        },
-      ],
-    },
-  };
+  // const alliesChannels = channels[0];
+  // const enemiesChannels = channels[1];
+  // const neutralsChannels = channels[2];
+
+  // const data = {
+  //   [serverId]: {
+  //     label: characters[serverId],
+  //     categories: [
+  //       {
+  //         id: 0,
+  //         label: "",
+  //         channels: [
+  //           {
+  //             id: "98",
+  //             label: "welcome",
+  //             unread: false,
+  //             description: `Welcome to ${characters[serverId]}'s server.`,
+  //           },
+  //           {
+  //             id: "99",
+  //             label: "announcements",
+  //             unread: false,
+  //             description: `Announcements from the Book I first appeared in.`,
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         id: 1,
+  //         label: alliesIds.has(serverId) ? "Other allies" : "Allies",
+  //         channels: alliesChannels,
+  //       },
+  //       {
+  //         id: 2,
+  //         label: enemiesIds.has(serverId) ? "Other enemies" : "Enemies",
+  //         channels: enemiesChannels,
+  //       },
+  //       {
+  //         id: 3,
+  //         label: "",
+  //         channels: neutralsChannels,
+  //       },
+  //     ],
+  //   },
+  // }; */
 
   return (
     <>

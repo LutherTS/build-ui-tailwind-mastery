@@ -1,9 +1,10 @@
 "use server";
 
-import prisma from "@/prisma/db";
 import { revalidatePath } from "next/cache";
 import { notFound, redirect } from "next/navigation";
 import randomInteger from "random-int";
+
+import prisma from "@/prisma/db";
 
 export async function randomize() {
   const serverTimes = randomInteger(1, 21);
@@ -82,8 +83,3 @@ export async function randomize() {
   revalidatePath("/channels", "layout");
   redirect("/channels");
 }
-
-/* Notes
-Making it explicitly a button with no redirects.
-Bringing back redirect so that the change in unread doesn't seem "random."
-*/

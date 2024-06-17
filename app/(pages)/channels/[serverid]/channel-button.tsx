@@ -20,7 +20,7 @@ export function ChannelButton({
   channelId: string;
   categoryIsClosed?: boolean;
 }>) {
-  const updateUserWithId = read.bind(null, href, unread, serverId, channelId);
+  const readWithBind = read.bind(null, href, unread, serverId, channelId);
 
   const pathname = usePathname();
   const isPathname = href === pathname;
@@ -40,7 +40,7 @@ export function ChannelButton({
 
   return (
     <form
-      action={updateUserWithId}
+      action={readWithBind}
       className={`relative mx-2 ${categoryIsClosed && state === "inactiveRead" ? "hidden" : ""}`}
     >
       <button

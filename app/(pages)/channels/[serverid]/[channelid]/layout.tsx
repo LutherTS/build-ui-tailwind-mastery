@@ -1,23 +1,27 @@
-import * as Icons from "@/app/components/icons";
-import { characters } from "@/app/utilities/characters";
-import prisma from "@/prisma/db";
 import { notFound } from "next/navigation";
 
-const specialChannels: {
-  [key: string]: {
-    label: string;
-    description: string;
-  };
-} = {
-  98: {
-    label: "welcome",
-    description: "",
-  },
+import prisma from "@/prisma/db";
 
-  99: { label: "announcements", description: "" },
-};
+import * as Icons from "@/app/components/icons";
+// import { characters } from "@/app/utilities/characters";
 
-const specialIds = new Set(["98", "99"]);
+/* // data now instructed from a database //
+
+// const specialChannels: {
+//   [key: string]: {
+//     label: string;
+//     description: string;
+//   };
+// } = {
+//   98: {
+//     label: "welcome",
+//     description: "",
+//   },
+
+//   99: { label: "announcements", description: "" },
+// };
+
+// const specialIds = new Set(["98", "99"]); */
 
 export default async function ChannelLayout({
   params,
@@ -44,16 +48,17 @@ export default async function ChannelLayout({
       },
     },
   });
-  console.log(channel);
 
   if (!channel) notFound();
 
   //
 
-  specialChannels["98"].description =
-    `Welcome to ${characters[serverId]}'s server.`;
-  specialChannels["99"].description =
-    `Announcements from the Book where ${characters[serverId]} first appeared in.`;
+  /* // data now instructed from a database //
+
+  // specialChannels["98"].description =
+  //   `Welcome to ${characters[serverId]}'s server.`;
+  // specialChannels["99"].description =
+  //   `Announcements from the Book where ${characters[serverId]} first appeared in.`; */
 
   return (
     <>

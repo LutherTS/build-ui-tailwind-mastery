@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
+
 import * as Icons from "@/app/components/icons";
 import { CategoryButton } from "./category-button";
-import { ChannelLink } from "./channel-link";
-import { useState } from "react";
+// import { ChannelLink } from "./channel-link";
 import { ChannelButton } from "./channel-button";
 
 export function Channels({

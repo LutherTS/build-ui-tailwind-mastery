@@ -1,8 +1,9 @@
 "use server";
 
-import prisma from "@/prisma/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+import prisma from "@/prisma/db";
 
 export async function read(
   href: string,
@@ -42,6 +43,5 @@ export async function read(
 }
 
 /* Notes
-Making it explicitly a button with no redirects.
 redirect(href, RedirectType.replace);
 */
