@@ -38,7 +38,7 @@ export default async function ChannelsLayout({
   return (
     <>
       <div className="flex h-screen font-whitney text-gray-100">
-        <div className="hidden space-y-2 overflow-y-scroll bg-gray-900 p-3 md:block">
+        <div className="hidden space-y-2 overflow-y-scroll overscroll-none bg-gray-900 p-3 md:block">
           <div>
             <ServerButton href={`/channels`}>
               <Icons.Discord className="h-5 w-7" />
@@ -47,24 +47,28 @@ export default async function ChannelsLayout({
           </div>
           {servers.map((server) => {
             // just to see how it works
-            if (unreadServerIdentifiers.includes(server.identifier))
-              return (
-                <ServerLink key={server.id} href={`/channels/${server.id}/98`}>
-                  <Image
-                    src={`/feh-characters/character_thumb_${server.id}.png`}
-                    alt={`${server.id}`}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
-                    fill
-                  />
-                  {/* {server.id} */}
-                </ServerLink>
-              );
-            else
-              return (
-                <ServerLink key={server.id} href={`/channels/${server.id}/98`}>
-                  {server.id}
-                </ServerLink>
-              );
+            // if (unreadServerIdentifiers.includes(server.identifier))
+            return (
+              <ServerLink
+                unread={unreadServerIdentifiers.includes(server.identifier)}
+                key={server.id}
+                href={`/channels/${server.id}/98`}
+              >
+                <Image
+                  src={`/feh-characters/character_thumb_${server.id}.png`}
+                  alt={`${server.id}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // trying a default for warning handling
+                  fill
+                />
+                {/* {server.id} */}
+              </ServerLink>
+            );
+            // else
+            //   return (
+            //     <ServerLink key={server.id} href={`/channels/${server.id}/98`}>
+            //       {server.id}
+            //     </ServerLink>
+            //   );
           })}
           {/* // data now instructed from a database // */}
           {/* {Array.from({ length: 40 }, (_, i) => {

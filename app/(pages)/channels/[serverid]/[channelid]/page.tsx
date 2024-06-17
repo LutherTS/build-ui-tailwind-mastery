@@ -14,7 +14,7 @@ export default function ChannelPage({
 
   return (
     <>
-      <div className="flex-1 overflow-y-scroll">
+      <div className="flex-1 overflow-y-scroll overscroll-none">
         {channelId === "98" &&
           welcomes[serverId] &&
           welcomes[serverId].map((message, i, a) => (

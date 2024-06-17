@@ -2,7 +2,7 @@
 
 import prisma from "@/prisma/db";
 import { revalidatePath } from "next/cache";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import randomInteger from "random-int";
 
 export async function randomize() {
@@ -79,5 +79,10 @@ export async function randomize() {
     });
   }
 
-  revalidatePath("/", "layout"); // maybe in a server action it will work
+  revalidatePath("/channels", "layout"); // maybe in a server action it will work
+  // redirect("/channels");
 }
+
+/* Notes
+Making it explicitly a button with no redirects.
+*/

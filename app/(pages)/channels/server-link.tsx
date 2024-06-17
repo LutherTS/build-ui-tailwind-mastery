@@ -6,9 +6,11 @@ import { usePathname } from "next/navigation";
 export function ServerLink({
   children,
   href,
+  unread,
 }: Readonly<{
   children: React.ReactNode;
   href: string;
+  unread: boolean;
 }>) {
   const pathname = usePathname();
   const parentPath = pathname.split("/").slice(0, -1).join("/").concat("/");
@@ -19,10 +21,10 @@ export function ServerLink({
     <div className="relative">
       <Link href={href} className="group peer block active:translate-y-px">
         <div
-          className={`size-icon relative flex items-center justify-center overflow-hidden transition-all duration-200 ${
+          className={`relative flex size-icon items-center justify-center overflow-hidden transition-all duration-200 ${
             hasParentPath
-              ? "bg-brand rounded-icon-hover text-white"
-              : "group-hover:bg-brand rounded-icon group-hover:rounded-icon-hover bg-gray-700 text-gray-100 group-hover:text-white"
+              ? "rounded-icon-hover bg-brand text-white"
+              : "rounded-icon bg-gray-700 text-gray-100 group-hover:rounded-icon-hover group-hover:bg-brand group-hover:text-white"
           }`}
         >
           {children}
@@ -36,6 +38,13 @@ export function ServerLink({
         }`}
       >
         <div className="w-1 origin-left rounded-r bg-white transition-all duration-200" />
+      </div>
+      <div
+        className={`absolute -left-3 top-0 flex h-full flex-col justify-center ${
+          unread ? "*:bg-opacity-100" : "*:bg-opacity-0"
+        }`}
+      >
+        <div className="h-2 w-1 rounded-r-full bg-white" />
       </div>
     </div>
   );

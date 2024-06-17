@@ -129,7 +129,7 @@ export default async function ServerLayout({
           {characters[serverId]}'s Server
           <Icons.Chevron className="ml-auto size-[18px] opacity-80" />
         </button>
-        <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
+        <div className="flex-1 overflow-y-scroll overscroll-none font-medium text-gray-300">
           {/* no margin top because overflow-y-scroll */}
           <div className="h-3"></div>
           <Channels data={databaseData} serverId={serverId} />
