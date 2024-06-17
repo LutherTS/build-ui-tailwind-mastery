@@ -9,6 +9,7 @@ import {
 } from "@/app/utilities/characters";
 import { Channels } from "./channels";
 import prisma from "@/prisma/db";
+import { notFound } from "next/navigation";
 
 export default async function ServerLayout({
   params,
@@ -30,21 +31,29 @@ export default async function ServerLayout({
 
   //
 
-  // const server = await prisma.server.findFirst({
-  //   where: {
-  //     id: serverId,
-  //   },
-  // });
-  // console.log(server);
+  const server = await prisma.server.findFirst({
+    include: {
+      categories: {
+        include: {
+          channels: {},
+        },
+      },
+    },
+    where: {
+      id: serverId,
+    },
+  });
 
-  // const serverCategories = await prisma.category.findMany({
-  //   where: {
-  //     server: {
-  //       id: serverId,
-  //     },
-  //   },
-  // });
-  // console.log(serverCategories);
+  if (!server) {
+    notFound();
+  }
+
+  const databaseData = {
+    [server.id]: {
+      label: characters[server.id],
+      categories: server.categories,
+    },
+  };
 
   //
 
@@ -123,7 +132,9 @@ export default async function ServerLayout({
         <div className="flex-1 overflow-y-scroll font-medium text-gray-300">
           {/* no margin top because overflow-y-scroll */}
           <div className="h-3"></div>
-          <Channels data={data} serverId={serverId} />
+          <Channels data={databaseData} serverId={serverId} />
+          {/* // data now instructed from a database // */}
+          {/* <Channels data={data} serverId={serverId} /> */}
           {/* spacers used instead */}
           <div className="h-3"></div>
         </div>

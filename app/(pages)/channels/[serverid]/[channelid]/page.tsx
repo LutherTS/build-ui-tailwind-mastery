@@ -52,3 +52,7 @@ export default function ChannelPage({
     </>
   );
 }
+
+/* Notes
+I've also incorporated messages in the database. But I honestly don't need them to be called from there, at least at this time.
+*/

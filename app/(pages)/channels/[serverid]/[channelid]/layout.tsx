@@ -1,5 +1,7 @@
 import * as Icons from "@/app/components/icons";
 import { characters } from "@/app/utilities/characters";
+import prisma from "@/prisma/db";
+import { notFound } from "next/navigation";
 
 const specialChannels: {
   [key: string]: {
@@ -17,7 +19,7 @@ const specialChannels: {
 
 const specialIds = new Set(["98", "99"]);
 
-export default function ChannelLayout({
+export default async function ChannelLayout({
   params,
   children,
 }: Readonly<{
@@ -29,6 +31,24 @@ export default function ChannelLayout({
 }>) {
   const serverId = params.serverid;
   const channelId = params.channelid;
+
+  //
+
+  const channel = await prisma.channel.findFirst({
+    where: {
+      id: channelId,
+      category: {
+        server: {
+          id: serverId,
+        },
+      },
+    },
+  });
+  console.log(channel);
+
+  if (!channel) notFound();
+
+  //
 
   specialChannels["98"].description =
     `Welcome to ${characters[serverId]}'s server.`;
@@ -42,21 +62,32 @@ export default function ChannelLayout({
           <div className="flex items-center">
             <Icons.Hashtag className="mx-2 h-6 w-6 font-semibold text-gray-400" />
             <span className="mr-2 whitespace-nowrap font-ginto text-white">
-              {specialIds.has(channelId)
+              {channel.label}
+              {/* // data now instructed from a database // */}
+              {/* {specialIds.has(channelId)
                 ? `${specialChannels[channelId].label}`
-                : `${characters[channelId].toLocaleLowerCase().replaceAll(" ", "-")}`}
+                : `${characters[channelId].toLocaleLowerCase().replaceAll(" ", "-")}`} */}
             </span>
           </div>
 
           {/* For this, only #welcome and #announcements have descriptions. */}
-          {specialIds.has(channelId) && (
+          {channel.description && (
+            <>
+              <div className="mx-2 hidden h-6 w-px bg-white/[.06] md:block"></div>
+              <div className="mx-2 hidden truncate text-sm font-medium text-gray-200 md:block">
+                {channel.description}
+              </div>
+            </>
+          )}
+          {/* // data now instructed from a database // */}
+          {/* {specialIds.has(channelId) && (
             <>
               <div className="mx-2 hidden h-6 w-px bg-white/[.06] md:block"></div>
               <div className="mx-2 hidden truncate text-sm font-medium text-gray-200 md:block">
                 {specialChannels[channelId].description}
               </div>
             </>
-          )}
+          )} */}
 
           {/* Mobile */}
           <div className="ml-auto flex items-center md:hidden">

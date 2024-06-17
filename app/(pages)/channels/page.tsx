@@ -1,7 +1,7 @@
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export default async function ChannelsPage() {
-  revalidatePath("/channels");
+  // revalidatePath("/"); // I don't think that's currently working
 
   return (
     <>

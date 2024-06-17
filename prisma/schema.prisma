@@ -27,7 +27,7 @@ model Category {
   server       Server    @relation(fields: [serverId], references: [identifier])
   serverId     Int
 
-  categories   Channel[]
+  channels     Channel[]
 }
 
 model Channel {

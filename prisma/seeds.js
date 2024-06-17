@@ -198,5 +198,7 @@ seed();
 
 // Let's pray to God that it works on first try like I do 'em on Leetcode.
 
+// rm ./prisma/dev.db
+// npx prisma db push
 // node --loader ts-node/esm prisma/seeds.js
 // "type": "module",
