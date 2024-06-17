@@ -1,91 +1,87 @@
-// import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 import prisma from "@/prisma/db";
 import { notFound } from "next/navigation";
 import randomInteger from "random-int";
 
 export default async function ChannelsPage() {
-  // revalidatePath("/"); // I don't think that's currently working
+  // const serverTimes = randomInteger(1, 21);
+  // const excluded = ["1", "2", "3", "9"];
+  // console.log(serverTimes);
 
-  const serverTimes = randomInteger(1, 21);
-  const excluded = ["1", "2", "3", "9"];
-  console.log(serverTimes);
+  // const unreadServerIds = new Set<string>();
+  // for (let i = 0; i < serverTimes; i++) {
+  //   const randomServerId = randomInteger(1, 39).toString();
+  //   if (!excluded.includes(randomServerId)) unreadServerIds.add(randomServerId);
+  // }
+  // console.log(unreadServerIds);
 
-  const unreadServerIds = new Set<string>();
-  for (let i = 0; i < serverTimes; i++) {
-    const randomServerId = randomInteger(1, 39).toString();
-    if (!excluded.includes(randomServerId)) unreadServerIds.add(randomServerId);
-  }
-  console.log(unreadServerIds);
+  // const unreadServers = [...unreadServerIds];
 
-  const unreadServers = [...unreadServerIds];
+  // const identifiers: {
+  //   identifier: number;
+  // }[] = [];
 
-  const identifiers: {
-    identifier: number;
-  }[] = [];
+  // for (let unreadServer of unreadServers) {
+  //   const identifier = await prisma.server.findFirst({
+  //     select: {
+  //       identifier: true,
+  //     },
+  //     where: {
+  //       id: unreadServer,
+  //     },
+  //   });
 
-  for (let unreadServer of unreadServers) {
-    const identifier = await prisma.server.findFirst({
-      select: {
-        identifier: true,
-      },
-      where: {
-        id: unreadServer,
-      },
-    });
+  //   if (!identifier) notFound();
+  //   else identifiers.push(identifier);
+  // }
+  // console.log(identifiers);
 
-    if (!identifier) notFound();
-    else identifiers.push(identifier);
-  }
-  console.log(identifiers);
+  // const orIds = [...unreadServerIds].map((e, i, a) => {
+  //   const channeltimes = randomInteger(1, 21);
 
-  const orIds = [...unreadServerIds].map((e, i, a) => {
-    const channeltimes = randomInteger(1, 21);
+  //   const unreadChannelsIds = new Set<string>();
+  //   for (let i = 0; i < channeltimes; i++) {
+  //     const randomChannelsId = randomInteger(1, 39).toString();
+  //     if (!excluded.includes(randomChannelsId))
+  //       unreadChannelsIds.add(randomChannelsId);
+  //   }
 
-    const unreadChannelsIds = new Set<string>();
-    for (let i = 0; i < channeltimes; i++) {
-      const randomChannelsId = randomInteger(1, 39).toString();
-      if (!excluded.includes(randomChannelsId))
-        unreadChannelsIds.add(randomChannelsId);
-    }
+  //   const unreadChannels = [...unreadChannelsIds].map((e, i, a) => {
+  //     return { id: e };
+  //   });
 
-    const unreadChannels = [...unreadChannelsIds].map((e, i, a) => {
-      return { id: e };
-    });
+  //   return {
+  //     id: e,
+  //     identifier: identifiers[i].identifier,
+  //     unreadChannelsIds: unreadChannels,
+  //   };
+  // });
+  // console.log(orIds[0].unreadChannelsIds);
 
-    return {
-      id: e,
-      identifier: identifiers[i].identifier,
-      unreadChannelsIds: unreadChannels,
-    };
-  });
-  console.log(orIds[0].unreadChannelsIds);
+  // await prisma.channel.updateMany({
+  //   data: {
+  //     unread: false,
+  //   },
+  // });
 
-  await prisma.channel.updateMany({
-    data: {
-      unread: false,
-    },
-  });
+  // for (const orId of orIds) {
+  //   await prisma.channel.updateMany({
+  //     where: {
+  //       category: {
+  //         serverId: orId.identifier,
+  //       },
+  //       OR:
+  //         orId.unreadChannelsIds.length > 0
+  //           ? orId.unreadChannelsIds
+  //           : undefined,
+  //     },
+  //     data: {
+  //       unread: true,
+  //     },
+  //   });
+  // }
 
-  for (const orId of orIds) {
-    await prisma.channel.updateMany({
-      where: {
-        category: {
-          serverId: orId.identifier,
-        },
-        OR:
-          orId.unreadChannelsIds.length > 0
-            ? orId.unreadChannelsIds
-            : undefined,
-      },
-      data: {
-        unread: true,
-      },
-    });
-  }
-
-  // const servers = await prisma.server.findMany({
-
-  // })
+  // revalidatePath("/", "layout"); // I don't think that's currently working
 
   return (
     <>
