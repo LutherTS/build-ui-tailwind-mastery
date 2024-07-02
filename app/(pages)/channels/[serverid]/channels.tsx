@@ -73,9 +73,9 @@ export function Channels({
                     key={channel.id}
                     href={`/channels/${serverId}/${channel.id}`}
                     unread={channel.unread}
+                    serverId={serverId}
                     channelId={channel.id}
                     categoryIsClosed={categoryIsClosed}
-                    serverId={serverId}
                   >
                     {channel.id === "98" && (
                       <Icons.Book className="mr-1.5 size-5 text-gray-400" />

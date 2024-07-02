@@ -1,6 +1,9 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import {
+  // useParams,
+  usePathname,
+} from "next/navigation";
 
 import * as Icons from "@/app/components/icons";
 import { read } from "./read";
@@ -20,6 +23,14 @@ export function ChannelButton({
   channelId: string;
   categoryIsClosed?: boolean;
 }>) {
+  /* Now using useParams() instead of passing them down as props. */
+  // const params = useParams<{ serverid: string; channelid: string }>();
+  // const serverId = params.serverid;
+  // const channelId = params.channelid;
+  /* It works but with useParams it does a very hard refresh. */
+  /* Still going hard even without. I get it is not stable yet. */
+  /* Now it works fine without though. */
+
   const readWithBind = read.bind(null, href, unread, serverId, channelId);
 
   const pathname = usePathname();
