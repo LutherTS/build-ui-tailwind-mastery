@@ -18,6 +18,7 @@
     "react-dom": "19.0.0-rc-f994737d14-20240522"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.8",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -30,9 +31,13 @@
     "prisma": "^5.17.0",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5"
   },
   "prisma": {
-    "seed": "node --loader ts-node/esm prisma/seeds.js"
+    "seed": "node --loader ts-node/esm ../prisma/seeds.js"
+  },
+  "dockerfile": {
+    "legacyPeerDeps": true
   }
 }

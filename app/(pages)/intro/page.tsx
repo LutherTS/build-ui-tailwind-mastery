@@ -39,7 +39,7 @@ export default function Intro() {
         <div className="flex px-4 py-1 hover:bg-gray-800/30">
           <div>
             <p className="ml-14 text-gray-300">
-              Since we changed this in Tailwind 2 I've almost never used a
+              Since we changed this in Tailwind 2 I&apos;ve almost never used a
               leading class at all.
             </p>
           </div>

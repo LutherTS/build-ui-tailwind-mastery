@@ -129,7 +129,7 @@ export default async function ServerLayout({
               <Icons.Check className="absolute size-4" />
             </div>
           )}
-          {characters[serverId]}'s Server
+          {characters[serverId]}&apos;s Server
           <Icons.Chevron className="ml-auto size-[18px] opacity-80" />
         </button>
         <div className="flex-1 overflow-y-scroll overscroll-none font-medium text-gray-300">
