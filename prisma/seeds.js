@@ -196,3 +196,8 @@ seed();
 // npx prisma db push
 // node --loader ts-node/esm prisma/seeds.js
 // "type": "module",
+
+// "prisma": {
+//   "seed": "node --loader ts-node/esm prisma/seeds.js"
+// }
+// npx prisma db seed
