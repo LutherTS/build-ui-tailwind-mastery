@@ -11,15 +11,15 @@ datasource db {
 }
 
 model Server {
-  identifier  Int     @id @default(autoincrement())
+  identifier  Int        @id @default(autoincrement())
 
-  id          String // dependent on characters.ts
+  id          String     @unique // dependent on characters.ts
 
   categories Category[]
 }
 
 model Category {
-  identifier   Int     @id @default(autoincrement())
+  identifier   Int       @id @default(autoincrement())
 
   id           Int
   label        String
@@ -28,24 +28,28 @@ model Category {
   serverId     Int
 
   channels     Channel[]
+
+  @@unique([id, serverId])
 }
 
 model Channel {
-  identifier   Int     @id @default(autoincrement())
+  identifier   Int       @id @default(autoincrement())
 
   id           String // dependent on characters.ts
   label        String
   unread       Boolean
   description  String
 
-  category     Category    @relation(fields: [categoryId], references: [identifier])
+  category     Category  @relation(fields: [categoryId], references: [identifier])
   categoryId   Int
   
   messages     Message[]
+
+  @@unique([id, categoryId])
 }
 
 model Message {
-  identifier   Int     @id @default(autoincrement())
+  identifier   Int       @id @default(autoincrement())
 
   id           Int
   user         String // !

@@ -16,19 +16,37 @@ async function seed() {
     const characterId = character[0];
     const characterName = character[1];
 
-    const server = await prisma.server.create({
-      data: {
+    const server = await prisma.server.upsert({
+      where: {
+        id: characterId,
+      },
+      update: {},
+      create: {
         id: characterId,
       },
     });
 
     // welcome, announcements
-    const category0 = await prisma.category.create({
-      data: { id: 0, label: "", serverId: server.identifier },
+    const category0 = await prisma.category.upsert({
+      where: {
+        id_serverId: {
+          id: 0,
+          serverId: server.identifier,
+        },
+      },
+      update: {},
+      create: { id: 0, label: "", serverId: server.identifier },
     });
 
-    const welcomeChannel = await prisma.channel.create({
-      data: {
+    const welcomeChannel = await prisma.channel.upsert({
+      where: {
+        id_categoryId: {
+          id: "98",
+          categoryId: category0.identifier,
+        },
+      },
+      update: {},
+      create: {
         id: "98",
         label: "welcome",
         unread: false,
@@ -51,13 +69,20 @@ async function seed() {
     //   },
     // });
 
-    const announcementsChannel = await prisma.channel.create({
-      data: {
+    const announcementsChannel = await prisma.channel.upsert({
+      where: {
+        id_categoryId: {
+          id: "99",
+          categoryId: category0.identifier,
+        },
+      },
+      update: {},
+      create: {
         id: "99",
         label: "announcements",
         unread: false,
         description: `Announcements from the Book where ${characterName} first appeared in.`,
-        categoryId: category0.id,
+        categoryId: category0.identifier,
       },
     });
 
@@ -76,8 +101,15 @@ async function seed() {
     // });
 
     // Allies/Other allies
-    const category1 = await prisma.category.create({
-      data: {
+    const category1 = await prisma.category.upsert({
+      where: {
+        id_serverId: {
+          id: 1,
+          serverId: server.identifier,
+        },
+      },
+      update: {},
+      create: {
         id: 1,
         label: alliesIds.has(characterId) ? "Other allies" : "Allies",
         serverId: server.identifier,
@@ -87,13 +119,20 @@ async function seed() {
     const characterAlliesIds = [...alliesIds].filter((e) => e !== characterId);
 
     for (const allyId of characterAlliesIds) {
-      const allyChannel = await prisma.channel.create({
-        data: {
+      const allyChannel = await prisma.channel.upsert({
+        where: {
+          id_categoryId: {
+            id: allyId,
+            categoryId: category1.identifier,
+          },
+        },
+        update: {},
+        create: {
           id: allyId,
           label: characters[allyId].toLocaleLowerCase().replaceAll(" ", "-"),
           unread: false,
           description: "",
-          categoryId: category1.id,
+          categoryId: category1.identifier,
         },
       });
 
@@ -113,8 +152,15 @@ async function seed() {
     }
 
     // Enemies/Other enemies
-    const category2 = await prisma.category.create({
-      data: {
+    const category2 = await prisma.category.upsert({
+      where: {
+        id_serverId: {
+          id: 2,
+          serverId: server.identifier,
+        },
+      },
+      update: {},
+      create: {
         id: 2,
         label: enemiesIds.has(characterId) ? "Other enemies" : "Enemies",
         serverId: server.identifier,
@@ -126,13 +172,20 @@ async function seed() {
     );
 
     for (const enemyId of characterEnemiesIds) {
-      const enemyChannel = await prisma.channel.create({
-        data: {
+      const enemyChannel = await prisma.channel.upsert({
+        where: {
+          id_categoryId: {
+            id: enemyId,
+            categoryId: category2.identifier,
+          },
+        },
+        update: {},
+        create: {
           id: enemyId,
           label: characters[enemyId].toLocaleLowerCase().replaceAll(" ", "-"),
           unread: false,
           description: "",
-          categoryId: category2.id,
+          categoryId: category2.identifier,
         },
       });
 
@@ -152,8 +205,15 @@ async function seed() {
     }
 
     // neutrals
-    const category3 = await prisma.category.create({
-      data: { id: 3, label: "", serverId: server.identifier },
+    const category3 = await prisma.category.upsert({
+      where: {
+        id_serverId: {
+          id: 3,
+          serverId: server.identifier,
+        },
+      },
+      update: {},
+      create: { id: 3, label: "", serverId: server.identifier },
     });
 
     const characterNeutralsIds = [...neutralsIds].filter(
@@ -161,13 +221,20 @@ async function seed() {
     );
 
     for (const neutralId of characterNeutralsIds) {
-      const neutralChannel = await prisma.channel.create({
-        data: {
+      const neutralChannel = await prisma.channel.upsert({
+        where: {
+          id_categoryId: {
+            id: neutralId,
+            categoryId: category3.identifier,
+          },
+        },
+        update: {},
+        create: {
           id: neutralId,
           label: characters[neutralId].toLocaleLowerCase().replaceAll(" ", "-"),
           unread: false,
           description: "",
-          categoryId: category3.id,
+          categoryId: category3.identifier,
         },
       });
 
