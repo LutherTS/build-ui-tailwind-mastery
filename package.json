@@ -35,7 +35,7 @@
     "typescript": "^5"
   },
   "prisma": {
-    "seed": "node --loader ts-node/esm ../prisma/seeds.js"
+    "seed": "node --loader ts-node/esm prisma/seeds.js"
   },
   "dockerfile": {
     "legacyPeerDeps": true

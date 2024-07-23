@@ -1,12 +1,11 @@
 import * as Icons from "@/app/components/icons";
+import SeedForm from "./seed-form";
 
 export default function ChannelsPage() {
   return (
     <>
       <div className="hidden w-60 flex-col bg-gray-800 md:flex">
-        <div className="flex h-12 items-center px-4 font-ginto text-[15px] text-white shadow-sm transition hover:bg-gray-550/[.16]">
-          Discord BuildUI
-        </div>
+        <SeedForm />
         <div className="flex-1 space-y-2 overflow-y-scroll p-3 font-medium text-gray-300"></div>
       </div>
       <div className="flex min-w-0 flex-1 flex-shrink flex-col bg-gray-700">

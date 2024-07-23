@@ -29,7 +29,7 @@ COPY --link prisma .
 RUN npx prisma generate
 
 # # Seeds
-RUN npx prisma db seed
+# # RUN npx prisma db seed
 
 # Copy application code
 COPY --link . .
