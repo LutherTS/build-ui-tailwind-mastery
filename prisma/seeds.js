@@ -5,7 +5,7 @@ import {
   neutralsIds,
 } from "../app/utilities/characters.ts";
 import prisma from "./db.ts";
-import { announces, messages, welcomes } from "../app/utilities/messages.ts";
+// import { announces, messages, welcomes } from "../app/utilities/messages.ts";
 
 const charactersArray = Object.entries(characters);
 
@@ -37,19 +37,19 @@ async function seed() {
       },
     });
 
-    const welcomeMessageData = welcomes[characterId][0];
+    // const welcomeMessageData = welcomes[characterId][0];
 
     // welcomeMessage
-    await prisma.message.create({
-      data: {
-        id: welcomeMessageData.id,
-        user: welcomeMessageData.user,
-        avatarUrl: welcomeMessageData.avatarUrl,
-        date: welcomeMessageData.date,
-        text: welcomeMessageData.text,
-        channelId: welcomeChannel.identifier,
-      },
-    });
+    // await prisma.message.create({
+    //   data: {
+    //     id: welcomeMessageData.id,
+    //     user: welcomeMessageData.user,
+    //     avatarUrl: welcomeMessageData.avatarUrl,
+    //     date: welcomeMessageData.date,
+    //     text: welcomeMessageData.text,
+    //     channelId: welcomeChannel.identifier,
+    //   },
+    // });
 
     const announcementsChannel = await prisma.channel.create({
       data: {
@@ -61,19 +61,19 @@ async function seed() {
       },
     });
 
-    const announcementsMessageData = announces[characterId][0];
+    // const announcementsMessageData = announces[characterId][0];
 
     // announcementsMessage
-    await prisma.message.create({
-      data: {
-        id: announcementsMessageData.id,
-        user: announcementsMessageData.user,
-        avatarUrl: announcementsMessageData.avatarUrl,
-        date: announcementsMessageData.date,
-        text: announcementsMessageData.text,
-        channelId: announcementsChannel.identifier,
-      },
-    });
+    // await prisma.message.create({
+    //   data: {
+    //     id: announcementsMessageData.id,
+    //     user: announcementsMessageData.user,
+    //     avatarUrl: announcementsMessageData.avatarUrl,
+    //     date: announcementsMessageData.date,
+    //     text: announcementsMessageData.text,
+    //     channelId: announcementsChannel.identifier,
+    //   },
+    // });
 
     // Allies/Other allies
     const category1 = await prisma.category.create({
@@ -97,19 +97,19 @@ async function seed() {
         },
       });
 
-      const characterMessages = messages[allyId];
-      for (const characterMessage of characterMessages) {
-        await prisma.message.create({
-          data: {
-            id: characterMessage.id,
-            user: characterMessage.user,
-            avatarUrl: characterMessage.avatarUrl,
-            date: characterMessage.date,
-            text: characterMessage.text,
-            channelId: allyChannel.identifier,
-          },
-        });
-      }
+      // const characterMessages = messages[allyId];
+      // for (const characterMessage of characterMessages) {
+      //   await prisma.message.create({
+      //     data: {
+      //       id: characterMessage.id,
+      //       user: characterMessage.user,
+      //       avatarUrl: characterMessage.avatarUrl,
+      //       date: characterMessage.date,
+      //       text: characterMessage.text,
+      //       channelId: allyChannel.identifier,
+      //     },
+      //   });
+      // }
     }
 
     // Enemies/Other enemies
@@ -136,19 +136,19 @@ async function seed() {
         },
       });
 
-      const characterMessages = messages[enemyId];
-      for (const characterMessage of characterMessages) {
-        await prisma.message.create({
-          data: {
-            id: characterMessage.id,
-            user: characterMessage.user,
-            avatarUrl: characterMessage.avatarUrl,
-            date: characterMessage.date,
-            text: characterMessage.text,
-            channelId: enemyChannel.identifier,
-          },
-        });
-      }
+      // const characterMessages = messages[enemyId];
+      // for (const characterMessage of characterMessages) {
+      //   await prisma.message.create({
+      //     data: {
+      //       id: characterMessage.id,
+      //       user: characterMessage.user,
+      //       avatarUrl: characterMessage.avatarUrl,
+      //       date: characterMessage.date,
+      //       text: characterMessage.text,
+      //       channelId: enemyChannel.identifier,
+      //     },
+      //   });
+      // }
     }
 
     // neutrals
@@ -171,19 +171,19 @@ async function seed() {
         },
       });
 
-      const characterMessages = messages[neutralId];
-      for (const characterMessage of characterMessages) {
-        await prisma.message.create({
-          data: {
-            id: characterMessage.id,
-            user: characterMessage.user,
-            avatarUrl: characterMessage.avatarUrl,
-            date: characterMessage.date,
-            text: characterMessage.text,
-            channelId: neutralChannel.identifier,
-          },
-        });
-      }
+      // const characterMessages = messages[neutralId];
+      // for (const characterMessage of characterMessages) {
+      //   await prisma.message.create({
+      //     data: {
+      //       id: characterMessage.id,
+      //       user: characterMessage.user,
+      //       avatarUrl: characterMessage.avatarUrl,
+      //       date: characterMessage.date,
+      //       text: characterMessage.text,
+      //       channelId: neutralChannel.identifier,
+      //     },
+      //   });
+      // }
     }
   }
 
