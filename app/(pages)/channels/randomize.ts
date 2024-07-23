@@ -81,5 +81,5 @@ export async function randomize() {
   }
 
   revalidatePath("/channels", "layout");
-  redirect("/channels");
+  // redirect("/channels");
 }
