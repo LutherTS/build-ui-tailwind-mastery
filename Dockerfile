@@ -12,6 +12,12 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
+# # ARG used temporarily
+ARG DATABASE_URL=file:./dev.db
+
+# # forcing hostname to 0.0.0.0
+ENV HOSTNAME "0.0.0.0"
+
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -27,8 +33,8 @@ RUN npm ci --include=dev --legacy-peer-deps
 COPY --link prisma .
 RUN npx prisma generate
 
-# # Seeds
-# # RUN npx prisma db seed
+# # same flow from development (THAT WORKED)
+RUN npx prisma db push
 
 # Copy application code
 COPY --link . .

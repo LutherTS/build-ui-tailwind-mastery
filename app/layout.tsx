@@ -64,3 +64,30 @@ export default function RootLayout({
     </html>
   );
 }
+
+/* Notes
+So the deployment problems where: 
+- npm install @flydotio/dockerfile --save-dev --legacy-peer-deps
+before fly launch
+- npx @flydotio/dockerfile --legacy-peer-deps
+before fly deploy
+To deal with Next.js 15 RC React 19 RC --force issues.
+- ARG DATABASE_URL=file:./dev.db
+in the Dockerfile
+To access the DATABASE_URL environment variable during deployment
+Safer methods to implement later here: 
+https://fly.io/javascript-journal/demystify-docker-js/
+https://fly.io/docs/apps/build-secrets/#mounting-secrets
+- fly secrets set $ fly secrets set SECRET_PASSWORD=<value>
+before fly deploy
+To set the runtime secrets (in the case for the database)
+- ENV HOSTNAME "0.0.0.0"
+in the Dockerfile
+To force the correct hostname being listened to be fly.io
+- RUN npx prisma db push
+To get the database to work in production like it does in development
+- commenting out // npx prisma migrate deploy
+in docker-entrypoint.js
+To avoid the Prisma baselining issue.
+https://www.prisma.io/docs/orm/prisma-migrate/workflows/baselining
+*/
