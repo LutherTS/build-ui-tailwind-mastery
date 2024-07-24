@@ -94,6 +94,11 @@ https://www.prisma.io/docs/orm/prisma-migrate/workflows/baselining
 The next challenges I'll have to overcome are:
 - Making "RUN npx prisma db seed" work
 - Turning ARG DATABASE_URL into a build secret
+...
+- and the database doesn't persist, 
+moreso it resets on every deployment, 
+probably due to the "RUN npx prisma db push" I added
+(which thankfully in this project is not that big a deal)
 
 But the good thing is, now I can confidently work on my
 Next.js/Prisma/SQLite/Fly.io
