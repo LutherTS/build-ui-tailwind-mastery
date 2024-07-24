@@ -18,8 +18,9 @@ export default function ChannelsPage() {
           </div>
           <div className="mx-2 hidden h-6 w-px bg-white/[.06] md:block"></div>
           <div className="mx-2 hidden truncate text-sm font-medium text-gray-200 md:block">
-            Click a server to start. Clicking the Discord icon randomizes unread
-            channels.
+            {/* Click a server to start. Clicking the Discord icon randomizes unread channels. */}
+            Click the title to seed the servers. Then click the logo to
+            randomize unread channels.
           </div>
         </div>
         <div className="flex-1 space-y-4 overflow-y-scroll p-3"></div>

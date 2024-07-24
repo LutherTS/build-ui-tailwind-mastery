@@ -32,7 +32,7 @@ export async function randomize() {
       },
     });
 
-    if (!identifier) notFound();
+    if (!identifier) redirect("/channels");
     else identifiers.push(identifier);
   }
 

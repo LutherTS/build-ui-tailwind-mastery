@@ -1,5 +1,5 @@
 import randomInteger from "random-int";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import prisma from "@/prisma/db";
 
@@ -45,9 +45,7 @@ export default async function ServerLayout({
     },
   });
 
-  if (!server) {
-    notFound();
-  }
+  if (!server) redirect("/channels");
 
   const databaseData = {
     [server.id]: {

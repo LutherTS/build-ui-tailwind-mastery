@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import prisma from "@/prisma/db";
 
@@ -49,7 +49,7 @@ export default async function ChannelLayout({
     },
   });
 
-  if (!channel) notFound();
+  if (!channel) redirect("/channels");
 
   //
 
