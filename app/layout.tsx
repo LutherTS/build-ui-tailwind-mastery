@@ -86,8 +86,16 @@ in the Dockerfile
 To force the correct hostname being listened to be fly.io
 - RUN npx prisma db push
 To get the database to work in production like it does in development
-- commenting out // npx prisma migrate deploy
+- commenting out // "npx prisma migrate deploy"
 in docker-entrypoint.js
 To avoid the Prisma baselining issue.
 https://www.prisma.io/docs/orm/prisma-migrate/workflows/baselining
+
+The next challenges I'll have to overcome are:
+- Making "RUN npx prisma db seed" work
+- Turning ARG DATABASE_URL into a build secret
+
+But the good thing is, now I can confidently work on my
+Next.js/Prisma/SQLite/Fly.io
+combo moving forward without fear of making an entire app for nothing.
 */

@@ -36,6 +36,9 @@ RUN npx prisma generate
 # # same flow from development (THAT WORKED)
 RUN npx prisma db push
 
+# # Seeds
+# # RUN npx prisma db seed
+
 # Copy application code
 COPY --link . .
 
