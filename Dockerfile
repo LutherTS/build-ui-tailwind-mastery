@@ -19,7 +19,7 @@ ARG DATABASE_URL=file:./dev.db
 ENV HOSTNAME "0.0.0.0"
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \

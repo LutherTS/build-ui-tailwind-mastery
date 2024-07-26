@@ -45,7 +45,7 @@ const whitney = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Discord Clone BuildUI",
+  title: "Discord Clone Build UI",
   description: "From the course Tailwind Mastery",
 };
 
